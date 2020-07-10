@@ -1,10 +1,14 @@
 <template>
-  <div>
+  <div class="text-center">
+
+    <!-- select button -->
     <select v-model="state" class="btn-primary border-0 p-2 my-4">
+        <option value="Select" selected>Select</option>
         <option value="State">State</option>
         <option value="District">District</option>
+        
     </select>
-
+    
     <table class="table" v-if="tableData">
         <thead>
             <tr>
@@ -15,15 +19,17 @@
                 <th scope="col" v-if="state=='District'">Deceased</th>
             </tr>
         </thead>
+        <!-- Table body for District wise data -->
         <tbody  v-if="state=='District'">
             <tr v-for="(i, name) in tableData" :key="i">
-                <td>{{name}}</td>
-                <td>{{i.confirmed}}</td>
-                <td>{{i.active}}</td>
-                <td>{{i.recovered}}</td>
-                <td>{{i.deceased}}</td>
+                <td v-if="name!='Other State'">{{name}}</td>
+                <td v-if="name!='Other State'">{{i.confirmed}}</td>
+                <td v-if="name!='Other State'">{{i.active}}</td>
+                <td v-if="name!='Other State'">{{i.recovered}}</td>
+                <td v-if="name!='Other State'">{{i.deceased}}</td>
             </tr>
         </tbody>
+        <!-- Table body for State wise data -->
         <tbody v-else>
             <tr v-for="i in tableData" :key="i">
                 <td>{{i.state}}</td>
@@ -44,7 +50,7 @@ export default {
   name: 'Table',
   data:function(){
       return{
-          state:"State",
+          state:"Select",
           tableData:null
       }
   },
@@ -66,19 +72,7 @@ export default {
       }
   },
 
-//   async mounted(){
-//       if(this.state=="State"){
-          
-//           return;
-//       }else if(this.state=="District"){
-//           console.log("hi")
-//           let tempTableData= await axios.get("https://api.covid19india.org/zones.json")
-//           tempTableData= tempTableData.data.zones.slice(0,30)
-//           this.tableData=tempTableData
-//           console.log(this.tableData)
-//       }
-      
-//   },
+
   computed:{
       stateOrDist(){
           if(this.state=="State"){

@@ -3,9 +3,11 @@
       <h6>{{heading}}</h6>
       <p v-if="today">+{{today}}</p>
       <h3>{{total}}</h3>
+      <!-- mini chart -->
       <div class="">
           <chart :options="graphData" class="chart"></chart>
       </div>
+      <!-- /mini chart -->
   </div>
 </template>
 

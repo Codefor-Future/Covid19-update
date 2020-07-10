@@ -1,7 +1,7 @@
 <template>
   <div>
       <nav class="nav">
-          <h1>Covid19India</h1>
+          <h1 class="mx-auto mb-5">Covid19India</h1>
       </nav>
   </div>
 </template>

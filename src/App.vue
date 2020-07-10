@@ -1,6 +1,10 @@
 <template>
   <div id="app" class="p-5">
+    <!-- Nav -->
     <Nav/>
+    <!-- /Nav -->
+    
+    <!-- Quick view Cards -->
     <div class="row">
       <div class="col-sm-4 text-danger">
         <Card heading='Confirmed' :key="fullData.confirmed.key" :graphData="fullData.confirmed" :total="data.totalconfirmed" :today="data.dailyconfirmed"/>
@@ -12,13 +16,20 @@
         <Card heading='Deceased' :key="fullData.deceased.key" :graphData="fullData.deceased" :total="data.totaldeceased" :today="data.dailydeceased"/>
       </div>
     </div>
+    <!-- /Quick view Cards -->
+
+    <!-- Table -->
     <TableData/>
+    <!-- /Table -->
+
+    <!-- Charts -->
     <h3>Confirmed</h3>
     <chart :options="fullData.confirmed"></chart><br>
     <h3>Recovered</h3>
     <chart :options="fullData.recovered"></chart><br>
     <h3>Deceased</h3>
     <chart :options="fullData.deceased"></chart>
+    <!-- /Charts -->
   </div>
 </template>
 
