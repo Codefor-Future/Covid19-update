@@ -44,30 +44,24 @@
 
 <script>
 
-import axios from 'axios'
 
 export default {
   name: 'Table',
   data:function(){
       return{
           state:"Select",
-          tableData:null
       }
   },
   watch:{
       state:async function(newstate){
           if(newstate=="State"){
-              let tempTableData= await axios.get("https://api.covid19india.org/data.json")
-                
-                this.tableData=tempTableData.data.statewise
+              this.$store.dispatch('updateTableData',newstate)
 
           
             }else if(newstate=="District"){
-                let tempTableData= await axios.get("https://api.covid19india.org/state_district_wise.json")
-                
-                this.tableData=tempTableData.data.Kerala.districtData
+                 this.$store.dispatch('updateTableData',newstate)
+   
 
-                console.log(tempTableData)
         }
       }
   },
@@ -80,6 +74,9 @@ export default {
           }else{
               return "District";
           }
+      },
+      tableData(){
+          return this.$store.state.tableData
       }
   }
 

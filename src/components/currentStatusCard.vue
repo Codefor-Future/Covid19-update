@@ -16,11 +16,26 @@ export default {
   name: 'CurrentStatusCard',
   props:{
       heading:String,
-      today:String,
-      total: String,
+    //   today:String,
+    //   total: String,
       cls:String,
-      graphData: Object,
+    //   graphData: Object,
 
+  },
+  computed:{
+
+      value(){
+        return this.$props.heading.toLowerCase()
+      },
+      today(){
+          return this.$store.state.data["daily"+this.value]
+      },
+      total(){
+          return this.$store.state.data["total"+this.value]
+      },
+      graphData(){
+          return this.$store.state.fullData[this.value]
+      }
   }
 }
 </script>
